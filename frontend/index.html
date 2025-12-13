@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <!------------ SignUp LogIn LogOut ----------->
+<div class="header">
+    <h2>Add Note</h2>
+    <div class="auth-buttons" id="authButtons">
+       <button class="btn-outline" onclick="openSignup()">SignUp</button>
+        <button class="btn-primary" onclick="openLogin()">Log In</button>
+    </div>
+    <div class="auth-buttons" id="userSection" style="display:none;">
+      <span id="usernameText"></span>
+      <button class="btn-outline" onclick="logout()">Logout</button>
+    </div>
+</div>
+
+  <!------------ Toast ---------------->
+  <div id="toast" class="toast"></div>
+
+  <!---------------- Add Note ---------------->
+  <div class="input-fields">
+    <label>Title</label>
+    <input id="titleInput" type="text" placeholder="Enter title">
+
+    <label>Description</label>
+    <textarea id="descInput" placeholder="Write your note here..."></textarea>
+
+     <button class="btn" onclick="addNote()">Submit</button>
+  </div>
+
+  <h3>Your Notes</h3>
+
+  <!----------- if No Notes present---------->
+  <div class="notes" id="notesContainer">
+    <p id="emptyMsg">No notes are present</p>
+  </div>
+</div>
+
+<!-------- Signup Modal ---------->
+<div class="modal" id="signupModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeSignup()">&times;</span>
+
+    <h2>Sign Up</h2>
+
+    <label>Full Name</label>
+    <input class="name" type="text">
+
+    <label>Username</label>
+    <input class="username" type="text">
+
+    <label>Email</label>
+    <input class="email" type="email">
+
+    <label>Password</label>
+    <input class="password" type="password">
+
+    <label>Confirm Password</label>
+    <input class="conform-password" type="password">
+
+    <button class="btn-primary full-btn" onclick="signup()">Create Account</button>
+  </div>
+</div>
+
+<!--------------- Login Modal--------------->
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeLogin()">&times;</span>
+
+    <h2>Login</h2>
+
+    <label>Email</label>
+    <input id="loginEmail" type="email">
+
+    <label>Password</label>
+    <input id="loginPassword" type="password">
+
+    <button class="btn-primary full-btn" onclick="login()">Login</button>
+  </div>
+</div>
+
+<!--------------- Delete Modal ------------->
+<div class="modal" id="deleteModal">
+  <div class="delete-modal-content">
+    <h3>Delete Note?</h3>
+    <p>Are you sure you want to delete this note?</p>
+
+    <div class="delete-actions">
+      <button class="button-outline" onclick="closeDelete()">Cancel</button>
+      <button class="button-primary" onclick="deleteNote()">Delete</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
