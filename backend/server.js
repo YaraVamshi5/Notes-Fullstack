@@ -113,7 +113,7 @@ app.delete("/api/notes/:id", async (req, res) => {
   res.json({ message: "Note deleted" });
 });
 
-//--------------Server -------------
+//--------------Server  is starting -------------
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log(` Server is Started`)
