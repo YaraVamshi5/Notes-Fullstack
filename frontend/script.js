@@ -1,6 +1,5 @@
-
 // --------- Config---------- 
-const API = "http://localhost:3000/api";
+const API = "https://notes-fullstack-backend-19mj.onrender.com/api";
 let currentUser = null;
 let deleteId = null;
 
@@ -12,8 +11,6 @@ const notesContainer = document.getElementById("notesContainer");
 const emptyMsg = document.getElementById("emptyMsg");
 const titleInput = document.getElementById("titleInput");
 const descInput = document.getElementById("descInput");
-
-
 
 const authButtons = document.getElementById("authButtons");
 const userSection = document.getElementById("userSection");
@@ -30,10 +27,8 @@ function updateAuthUI() {
   }
 }
 
-
-
 // ------------- Toast ------------------ 
-function showToast(msg, type="success") {
+function showToast(msg, type = "success") {
   const toast = document.getElementById("toast");
   toast.textContent = msg;
   toast.className = `toast ${type}`;
@@ -111,7 +106,6 @@ function login() {
       localStorage.setItem("user", JSON.stringify(data));
       updateAuthUI();
 
-
       showToast("Login successful", "success");
       closeLogin();
       fetchNotes();
@@ -130,8 +124,6 @@ function logout() {
   updateAuthUI();
   showToast("Logged out successfully", "success");
 }
-
-
 
 // ---------------Notes --------------- 
 function fetchNotes() {
@@ -175,7 +167,6 @@ function fetchNotes() {
     });
 }
 
-
 function addNote() {
   if (!currentUser) {
     showToast("Please login first", "error");
@@ -185,15 +176,8 @@ function addNote() {
   const title = titleInput.value.trim();
   const description = descInput.value.trim();
 
-  if (!title) {
-    showToast("Please enter the title", "error");
-    return;
-  }
-
-  if (!description) {
-    showToast("Please enter the description", "error");
-    return;
-  }
+  if (!title) return showToast("Please enter the title", "error");
+  if (!description) return showToast("Please enter the description", "error");
 
   fetch(`${API}/notes`, {
     method: "POST",
@@ -219,7 +203,6 @@ function addNote() {
     });
 }
 
-
 // ---------------Delete---------------
 function confirmDelete(id) {
   deleteId = id;
@@ -237,14 +220,13 @@ function deleteNote() {
     });
 }
 
-
 function updateNoteInputState() {
   const disabled = !currentUser;
   titleInput.disabled = disabled;
   descInput.disabled = disabled;
 }
 
-// --------------- Auto Login ------------------- */
+// --------------- Auto Login -------------------
 window.onload = () => {
   const saved = localStorage.getItem("user");
   if (saved) {
@@ -255,4 +237,3 @@ window.onload = () => {
     updateAuthUI();
   }
 };
-
