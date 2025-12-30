@@ -39,6 +39,11 @@ const noteSchema = new mongoose.Schema(
 );
 const Note = mongoose.model("Note", noteSchema);
 
+//---------------- Root Route ----------------
+app.get("/", (req, res) => {
+  res.send("Notes FullStack Backend is running");
+});
+
 //--------- Auth ------------
 
 //----------- Signup -------------
@@ -100,6 +105,12 @@ app.post("/api/notes", async (req, res) => {
   res.status(201).json(note);
 });
 
+//--------------Get ALL notes (NEW)---------------
+app.get("/api/notes", async (req, res) => {
+  const notes = await Note.find().sort({ createdAt: -1 });
+  res.json(notes);
+});
+
 //------------Get notes for user------------------
 app.get("/api/notes/:userId", async (req, res) => {
   const notes = await Note.find({ userId: req.params.userId })
@@ -113,8 +124,8 @@ app.delete("/api/notes/:id", async (req, res) => {
   res.json({ message: "Note deleted" });
 });
 
-//--------------Server  is starting -------------
+//--------------Server is starting -------------
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
-  console.log(` Server is Started`)
+  console.log("Server is Started")
 );
